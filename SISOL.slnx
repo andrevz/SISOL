@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/src/" />
+  <Folder Name="/src/Core/">
+    <Project Path="src/Core/SISOL.Application/SISOL.Application.csproj" />
+    <Project Path="src/Core/SISOL.Domain/SISOL.Domain.csproj" />
+  </Folder>
+  <Folder Name="/src/Infrastructure/">
+    <Project Path="src/Infrastructure/SISOL.Infrastructure/SISOL.Infrastructure.csproj" />
+  </Folder>
+</Solution>
