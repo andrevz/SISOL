@@ -4,14 +4,15 @@ public class Department : BaseEntity
 {
     private readonly List<Department> _subDepartments = [];
 
-    public Guid? ParentId { get; private set; }
+    public Guid? ParentDepartmentId { get; private set; }
     public string Name { get; private set; }
 
     public IReadOnlyCollection<Department> SubDepartments => _subDepartments.AsReadOnly();
+    public Department? ParentDepartment { get; set; }
 
-    private Department(string name, Guid? parentId)
+    private Department(string name, Guid? parentDepartmentId)
     {
         Name = name;
-        ParentId = parentId;
+        ParentDepartmentId = parentDepartmentId;
     }
 }
