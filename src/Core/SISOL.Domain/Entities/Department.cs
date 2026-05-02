@@ -10,6 +10,11 @@ public class Department : BaseEntity
     public IReadOnlyCollection<Department> SubDepartments => _subDepartments.AsReadOnly();
     public Department? ParentDepartment { get; set; }
 
+    private Department()
+    {
+        Name = string.Empty;
+    }
+
     private Department(string name, Guid? parentDepartmentId)
     {
         Name = name;

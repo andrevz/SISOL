@@ -8,7 +8,7 @@ using SISOL.Domain.Common;
 
 namespace SISOL.Application.Features.Department.GetPaged.Handler
 {
-    internal class GetPagedDepartmentQueryHandler : IQueryHandler<GetPagedDepartmentQuery, Result<PagedResponse<GetPagedDepartmentResponse>>>
+    public class GetPagedDepartmentQueryHandler : IQueryHandler<GetPagedDepartmentQuery, Result<PagedResponse<GetPagedDepartmentResponse>>>
     {
         private readonly IDepartmentRepository _repository;
 

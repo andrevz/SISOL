@@ -2,7 +2,7 @@
 
 namespace SISOL.Application.Common.Contracts.Services.CQRS;
 
-internal interface IDispatcher
+public interface IDispatcher
 {
     Task SendAsync<TCommand>(TCommand command, CancellationToken cancellationToken = default) where TCommand : ICommand;
 

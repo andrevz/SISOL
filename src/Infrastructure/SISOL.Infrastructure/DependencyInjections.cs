@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SISOL.Application.Common.Contracts.Repositories;
+using SISOL.Infrastructure.Adapters.Repositories;
 using SISOL.Infrastructure.Configurations.Persistence.Context;
 
 namespace SISOL.Infrastructure;
@@ -13,6 +15,8 @@ public static class DependencyInjections
         {
             options.UseNpgsql(configuration.GetConnectionString("DbSISOL"));
         });
+
+        services.AddScoped<IDepartmentRepository, DepartmentRepository>();
 
         return services;
     }

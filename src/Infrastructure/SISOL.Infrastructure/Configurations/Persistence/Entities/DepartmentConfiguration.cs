@@ -18,5 +18,8 @@ internal class DepartmentConfiguration : IEntityTypeConfiguration<Department>
             .WithMany(d => d.SubDepartments)
             .HasForeignKey(d => d.ParentDepartmentId)
             .OnDelete(DeleteBehavior.Restrict);
+
+        builder.HasIndex(b => b.Name)
+            .IsUnique();
     }
 }

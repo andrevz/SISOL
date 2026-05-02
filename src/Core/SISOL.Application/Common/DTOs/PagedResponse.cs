@@ -1,6 +1,6 @@
 ﻿namespace SISOL.Application.Common.DTOs;
 
-internal class PagedResponse<T>
+public class PagedResponse<T>
 {
     public ICollection<T> Result { get; set; } = [];
     public int TotalRowsPerPage { get; set; }

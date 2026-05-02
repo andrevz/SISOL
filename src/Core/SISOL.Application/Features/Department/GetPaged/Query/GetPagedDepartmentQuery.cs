@@ -5,6 +5,6 @@ using SISOL.Domain.Common;
 
 namespace SISOL.Application.Features.Department.GetPaged.Query;
 
-internal class GetPagedDepartmentQuery : PagedRequest, IQuery<Result<PagedResponse<GetPagedDepartmentResponse>>>
+public class GetPagedDepartmentQuery : PagedRequest, IQuery<Result<PagedResponse<GetPagedDepartmentResponse>>>
 {
 }

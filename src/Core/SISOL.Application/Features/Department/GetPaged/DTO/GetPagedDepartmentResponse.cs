@@ -1,6 +1,6 @@
 ﻿namespace SISOL.Application.Features.Department.GetPaged.DTO;
 
-internal class GetPagedDepartmentResponse
+public class GetPagedDepartmentResponse
 {
     public Guid Id { get; set; }
     public Guid? ParentDepartmentId { get; set; }
