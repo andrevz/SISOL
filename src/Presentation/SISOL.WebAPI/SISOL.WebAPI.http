@@ -1,0 +1,6 @@
+@SISOL.WebAPI_HostAddress = http://localhost:5276
+
+GET {{SISOL.WebAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

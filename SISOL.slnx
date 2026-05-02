@@ -7,4 +7,7 @@
   <Folder Name="/src/Infrastructure/">
     <Project Path="src/Infrastructure/SISOL.Infrastructure/SISOL.Infrastructure.csproj" />
   </Folder>
+  <Folder Name="/src/Presentation/">
+    <Project Path="src/Presentation/SISOL.WebAPI/SISOL.WebAPI.csproj" />
+  </Folder>
 </Solution>
