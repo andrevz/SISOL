@@ -1,4 +1,4 @@
-﻿namespace SISOL.Application.Features.Department.GetPaged.DTO;
+﻿namespace SISOL.Application.Features.Departments.GetPaged.DTO;
 
 public class GetPagedDepartmentResponse
 {

@@ -1,6 +1,0 @@
-@SISOL.WebAPI_HostAddress = http://localhost:5276
-
-GET {{SISOL.WebAPI_HostAddress}}/api/departments?pageNumber=1&pageSize=20
-Accept: application/json
-
-###

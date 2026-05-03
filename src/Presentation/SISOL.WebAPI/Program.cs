@@ -2,8 +2,9 @@ using Microsoft.AspNetCore.Mvc;
 using SISOL.Application;
 using SISOL.Application.Common.Contracts.Services.CQRS;
 using SISOL.Application.Common.DTOs;
-using SISOL.Application.Features.Department.GetPaged.DTO;
-using SISOL.Application.Features.Department.GetPaged.Query;
+using SISOL.Application.Features.Departments.Create.Command;
+using SISOL.Application.Features.Departments.GetPaged.DTO;
+using SISOL.Application.Features.Departments.GetPaged.Query;
 using SISOL.Domain.Common;
 using SISOL.Infrastructure;
 
@@ -26,15 +27,17 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGet("api/departments", async Task<IResult> ([FromQuery] int pageNumber, [FromQuery] int pageSize, IDispatcher dispatcher) =>
+app.MapGet("api/departments", async Task<IResult> ([FromQuery] int? pageNumber, [FromQuery] int? pageSize, IDispatcher dispatcher) =>
 {
-    var query = new GetPagedDepartmentQuery { PageNumber = pageNumber, PageSize = pageSize };
-    var result = await dispatcher.QueryAsync<GetPagedDepartmentQuery, Result<PagedResponse<GetPagedDepartmentResponse>>>(query);
+    var query = new GetPagedDepartmentQuery();
 
-    if (result.IsSuccess && result.Value == null)
+    if (pageNumber > 0 && pageSize > 0)
     {
-        return TypedResults.NotFound();
+        query.PageNumber = pageNumber.Value;
+        query.PageSize = pageSize.Value;
     }
+
+    var result = await dispatcher.QueryAsync<GetPagedDepartmentQuery, Result<PagedResponse<GetPagedDepartmentResponse>>>(query);
 
     if (result.IsSuccess)
     {
@@ -53,6 +56,30 @@ app.MapGet("api/departments", async Task<IResult> ([FromQuery] int pageNumber, [
 
     return TypedResults.BadRequest();
 })
-   .WithName("GetPagedDepartments");
+    .WithName("GetPagedDepartments");
+
+app.MapGet("api/departments/{id:guid}", (Guid id, IDispatcher dispatcher) => { })
+    .WithName("GetDepartmentById");
+
+app.MapPost("api/departments", async Task<IResult> (CreateDepartmentCommand command, IDispatcher dispatcher) =>
+{
+    var result = await dispatcher.SendAsync<CreateDepartmentCommand, Result<Guid>>(command);
+
+    if (result.IsSuccess)
+        return TypedResults.CreatedAtRoute("GetDepartmentById", new { id = result.Value });
+
+    if (result.Errors.Count != 0)
+    {
+        return TypedResults.BadRequest(new
+        {
+            isSuccess = false,
+            error = result.Errors,
+            timespan = DateTime.UtcNow
+        });
+    }
+
+    return TypedResults.BadRequest();
+})
+    .WithName("CreateDepartment");
 
 app.Run();

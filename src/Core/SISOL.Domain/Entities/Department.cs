@@ -1,3 +1,5 @@
+using SISOL.Domain.Common;
+
 namespace SISOL.Domain.Entities;
 
 public class Department : BaseEntity
@@ -19,5 +21,16 @@ public class Department : BaseEntity
     {
         Name = name;
         ParentDepartmentId = parentDepartmentId;
+    }
+
+    public static Result<Department> Create(string name, Guid? parentDepartmentId)
+    {
+        if (string.IsNullOrEmpty(name))
+            return Result.Failure<Department>("Department name is required");
+
+        if (parentDepartmentId == Guid.Empty)
+            return Result.Failure<Department>("Invalid parent department ID");
+
+        return Result.Success(new Department(name, parentDepartmentId));
     }
 }

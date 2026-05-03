@@ -2,8 +2,8 @@
 using SISOL.Application.Common.Contracts.Repositories;
 using SISOL.Application.Common.DTOs;
 using SISOL.Application.Common.Utils;
-using SISOL.Application.Features.Department.GetPaged.DTO;
-using SISOL.Application.Features.Department.GetPaged.Query;
+using SISOL.Application.Features.Departments.GetPaged.DTO;
+using SISOL.Application.Features.Departments.GetPaged.Query;
 using SISOL.Domain.Common;
 
 namespace SISOL.Application.Features.Department.GetPaged.Handler
